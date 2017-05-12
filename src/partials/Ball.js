@@ -6,6 +6,8 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.ping = new Audio('public/sounds/pong-01.wav');
+
     this.reset();
   }
 
@@ -50,6 +52,7 @@ export default class Ball {
         && this.y <= bottomY
       ) {
         this.vx = -this.vx;
+        this.ping.play();
       }
 
 
@@ -64,9 +67,16 @@ export default class Ball {
         && this.y <= bottomY
       ) {
         this.vx = -this.vx;
+        this.ping.play();
       }
     }
   }
+
+  goal(player) {
+    player.score++;
+    this.reset();
+  }
+
   render(svg, player1, player2) {
     this.x += this.vx;
     this.y += this.vy;
@@ -79,9 +89,19 @@ export default class Ball {
     ball.setAttributeNS(null, 'cx', this.x);
     ball.setAttributeNS(null, 'cy', this.y);
     ball.setAttributeNS(null, 'fill', '#FFFFFF');
-
-
     svg.appendChild(ball);
+
+    // Detect goal
+    const rightGoal = this.x + this.radius >= this.boardWidth;
+    const leftGoal = this.x - this.radius <= 0;
+
+    if (rightGoal) {
+      this.goal(player1)
+      this.direction = 1;
+    } else if (leftGoal) {
+      this.direction = -1;
+      this.goal(player2);
+    }
+
   }
 }
-  
