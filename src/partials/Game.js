@@ -21,15 +21,15 @@ export default class Game {
 			this.radius = 8;
 
 
-			this.player1 = new Paddle(
-				this.height,
-				this.paddleWidth,
-				this.paddleHeight,
-				this.padding,
-				(this.height - this.paddleHeight) / 2,
-				KEYS.a,
-				KEYS.z,
-			)
+		this.player1 = new Paddle(
+			this.height,
+			this.paddleWidth,
+			this.paddleHeight,
+			this.padding,
+			(this.height - this.paddleHeight) / 2,
+			KEYS.a,
+			KEYS.z,
+		)
 
 		this.player2 = new Paddle(
 			this.height,
@@ -45,12 +45,20 @@ export default class Game {
 			this.radius,
 			this.width,
 			this.height,
-
 		);
 
+		document.addEventListener('keydown', event => {
+			if (event.key === KEYS.spaceBar) {
+				this.pause = !this.pause;
+			}
+		})
 	}
 
 	render() {
+
+		if (this.pause) {
+			return;
+		}
 
 		this.gameElement.innerHTML = '';
 
@@ -63,7 +71,7 @@ export default class Game {
 		this.board.render(svg)
 		this.player1.render(svg)
 		this.player2.render(svg)
-		this.ball.render(svg)
+		this.ball.render(svg, this.player1, this.player2)
 	}
 
 }
