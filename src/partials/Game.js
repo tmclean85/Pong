@@ -4,7 +4,6 @@ import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
 
-
 export default class Game {
 
 	constructor(element, width, height) {
@@ -18,14 +17,12 @@ export default class Game {
 		this.player2Score = new Score(this.width / 2 + SCORE.distance, SCORE.topDistance, SCORE.size);
 
 
-
 		this.gameElement = document.getElementById(element);
 		this.board = new Board(this.width, this.height);
 		this.paddleWidth = 8,
 			this.paddleHeight = 56,
 			this.padding = 10,
 			this.radius = 8;
-
 
 		this.player1 = new Paddle(
 			this.height,
@@ -54,14 +51,11 @@ export default class Game {
 			this.height,
 		);
 
-	
-
 		this.ball2 = new Ball(
 			this.radius,
 			this.width,
 			this.height,
 		);
-
 
 		document.addEventListener('keydown', event => {
 			if (event.key === KEYS.spaceBar) {
@@ -77,16 +71,9 @@ export default class Game {
 					this.ball2.vy = this.ball.vy * 1.5
 			}
 		})
-		
-
 	}
 
-
-
-
 	render() {
-
-		
 
 		if (this.player1.height > 28 && this.player1.score - this.player2.score > 5) {
 			this.player1.height = this.player1.height * 0.5
@@ -133,5 +120,4 @@ export default class Game {
 		this.ball2.render(svg, this.player1, this.player2)
 
 	}
-
 }

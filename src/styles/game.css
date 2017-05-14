@@ -89,7 +89,7 @@ h1 {
   color: #fff;
 }
 
-.rules-wrapper {
+#rules-wrapper {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 8rem;
@@ -111,4 +111,8 @@ ul {
   border-width: 5px;
   border-color: #000;
   padding-bottom: 4rem;
+}
+
+#start-button {
+  padding-bottom: 5rem;
 }
