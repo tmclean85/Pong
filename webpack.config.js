@@ -11,8 +11,8 @@ module.exports = {
 	},
 
 	output: {
-		path: build,
-		filename: 'bundle.js',
+		path: src,
+		filename: 'index.js',
 	},
 
 	module: {
