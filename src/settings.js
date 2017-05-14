@@ -6,11 +6,16 @@ export const KEYS = {
   up: 'ArrowUp',       // player 2 up key
   down: 'ArrowDown',     // player 2 down key
   spaceBar: ' ', // we'll use this later...
+  x: 'x',
+  Shift: 'Shift',
+  s: 's',
+  Period: '.',
+  c: 'c'
 };
 
 export const SCORE = {
-  distance: 50,
+  distance: 140,
   size: 30,
-  topDistance: 20,
+  topDistance: 40,
 
 }

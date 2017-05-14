@@ -7,6 +7,8 @@ export default class Score {
     this.size = size;
   }
 
+  
+
 
 
   render(svg, score) {
@@ -16,7 +18,7 @@ export default class Score {
     text.setAttributeNS(null, 'y', this.y)
     text.setAttributeNS(null, 'font-size', this.size)
     text.setAttributeNS(null, 'font-family', 'Silkscreen Web, monotype')
-    text.setAttributeNS(null, 'fill', '#FFF')
+    text.setAttributeNS(null, 'fill', '#000')
     text.textContent = score;
 
     svg.appendChild(text);

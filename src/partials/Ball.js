@@ -6,9 +6,18 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
-    this.ping = new Audio('public/sounds/pong-01.wav');
-
+    this.ping = new Audio('public/sounds/pong-01.wav'),
+    this.pong = new Audio('public/sounds/pong-02.wav'),
+    this.goalSound = new Audio('public/sounds/goal-sound.wav'),
+    this.gameReset ();
     this.reset();
+  }
+
+
+
+  gameReset() {
+    this.x = this.boardWidth / 2;
+    this.y = this.boardHeight / 2;
   }
 
   reset() {
@@ -19,23 +28,27 @@ export default class Ball {
     this.vy = 0;
 
     while (this.vy === 0) {
-      this.vy = Math.floor(Math.random() * 10 - 5);
+      this.vy = Math.floor(Math.random() * 14 - 7);
     }
 
 
     //a number between -5 and 5 based on vy
-    this.vx = this.direction * (6 - Math.abs(this.vy));
+    this.vx = this.direction * (8 - Math.abs(this.vy));
   }
+  
 
   wallCollision() {
     const hitLeft = this.x - this.radius <= 0;
     const hitRight = this.x + this.radius >= this.boardWidth;
     const hitTop = this.y - this.radius <= 0;
     const hitBottom = this.y + this.radius >= this.boardHeight;
+    
 
     if (hitLeft || hitRight) {
+      this.goalSound.play();
       this.vx = -this.vx;
     } else if (hitTop || hitBottom) {
+      this.pong.play();
       this.vy = -this.vy;
     }
   }
@@ -88,8 +101,17 @@ export default class Ball {
     ball.setAttributeNS(null, 'r', this.radius);
     ball.setAttributeNS(null, 'cx', this.x);
     ball.setAttributeNS(null, 'cy', this.y);
-    ball.setAttributeNS(null, 'fill', '#FFFFFF');
+    ball.setAttributeNS(null, 'fill', '#000');
     svg.appendChild(ball);
+
+    let ball2 = document.createElementNS(SVG_NS, 'circle');
+    ball2.setAttributeNS(null, 'r', this.radius);
+    ball2.setAttributeNS(null, 'cx', this.x);
+    ball2.setAttributeNS(null, 'cy', this.y);
+    ball2.setAttributeNS(null, 'fill', '#000');
+    svg.appendChild(ball2);
+
+    
 
     // Detect goal
     const rightGoal = this.x + this.radius >= this.boardWidth;
@@ -97,9 +119,9 @@ export default class Ball {
 
     if (rightGoal) {
       this.goal(player1)
-      this.direction = 1;
-    } else if (leftGoal) {
       this.direction = -1;
+    } else if (leftGoal) {
+      this.direction = 1;
       this.goal(player2);
     }
 
