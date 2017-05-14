@@ -12,8 +12,8 @@ export default class Game {
 		this.width = width;
 		this.height = height;
 		this.radius = 8;
-		this.gameSound = new Audio('/public/sounds/game-music.mp3')
-		this.winSound = new Audio('/public/sounds/win-music.mp3')
+		this.gameSound = new Audio('public/sounds/game-music.mp3')
+		this.winSound = new Audio('public/sounds/win-music.mp3')
 		this.player1Score = new Score(this.width / 2 - SCORE.distance - 30, SCORE.topDistance, SCORE.size);
 		this.player2Score = new Score(this.width / 2 + SCORE.distance, SCORE.topDistance, SCORE.size);
 
