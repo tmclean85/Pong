@@ -16,7 +16,6 @@ export default class Game {
 		this.player1Score = new Score(this.width / 2 - SCORE.distance - 30, SCORE.topDistance, SCORE.size);
 		this.player2Score = new Score(this.width / 2 + SCORE.distance, SCORE.topDistance, SCORE.size);
 
-
 		this.gameElement = document.getElementById(element);
 		this.board = new Board(this.width, this.height);
 		this.paddleWidth = 8,
@@ -97,7 +96,7 @@ export default class Game {
 			this.gameSound.pause();
 			this.winSound.play();
 
-		} else if (this.player1.score < 20 || this.player2.score < 20){
+		} else if (this.player1.score < 20 || this.player2.score < 20) {
 			this.gameSound.play();
 		}
 
@@ -118,6 +117,5 @@ export default class Game {
 		this.player2.render(svg)
 		this.ball.render(svg, this.player1, this.player2)
 		this.ball2.render(svg, this.player1, this.player2)
-
 	}
 }

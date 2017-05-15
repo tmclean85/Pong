@@ -18,8 +18,6 @@ export default class Paddle {
         case down:
           this.down();
           break;
-
-
       }
     });
   }
@@ -39,10 +37,6 @@ export default class Paddle {
   down() {
     this.y = Math.min(this.boardHeight - this.height, this.y + this.speed)
   }
-
-   
-
-
 
   render(svg) {
 

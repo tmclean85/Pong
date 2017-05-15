@@ -7,13 +7,11 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.direction = 1;
     this.ping = new Audio('public/sounds/pong-01.wav'),
-    this.pong = new Audio('public/sounds/pong-02.wav'),
-    this.goalSound = new Audio('public/sounds/goal-sound.wav'),
-    this.gameReset ();
+      this.pong = new Audio('public/sounds/pong-02.wav'),
+      this.goalSound = new Audio('public/sounds/goal-sound.wav'),
+      this.gameReset();
     this.reset();
   }
-
-
 
   gameReset() {
     this.x = this.boardWidth / 2;
@@ -23,7 +21,6 @@ export default class Ball {
   reset() {
     this.x = this.boardWidth / 2;
     this.y = this.boardHeight / 2;
-    // generate a random number between -5 and 5 but not 0
 
     this.vy = 0;
 
@@ -31,18 +28,14 @@ export default class Ball {
       this.vy = Math.floor(Math.random() * 14 - 7);
     }
 
-
-    //a number between -5 and 5 based on vy
     this.vx = this.direction * (8 - Math.abs(this.vy));
   }
-  
 
   wallCollision() {
     const hitLeft = this.x - this.radius <= 0;
     const hitRight = this.x + this.radius >= this.boardWidth;
     const hitTop = this.y - this.radius <= 0;
     const hitBottom = this.y + this.radius >= this.boardHeight;
-    
 
     if (hitLeft || hitRight) {
       this.goalSound.play();
@@ -67,8 +60,6 @@ export default class Ball {
         this.vx = -this.vx;
         this.ping.play();
       }
-
-
     } else {
       let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height);
       let [leftX, rightX, topY, bottomY] = paddle
@@ -111,9 +102,6 @@ export default class Ball {
     ball2.setAttributeNS(null, 'fill', '#000');
     svg.appendChild(ball2);
 
-    
-
-    // Detect goal
     const rightGoal = this.x + this.radius >= this.boardWidth;
     const leftGoal = this.x - this.radius <= 0;
 

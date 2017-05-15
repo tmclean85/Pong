@@ -7,10 +7,6 @@ export default class Score {
     this.size = size;
   }
 
-  
-
-
-
   render(svg, score) {
 
     let text = document.createElementNS(SVG_NS, 'text')
@@ -23,5 +19,4 @@ export default class Score {
 
     svg.appendChild(text);
   }
-
 }
